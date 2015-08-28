@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="text">#ffffff</color>
+    <color name="blue">#18b4ed</color>
+    <color name="white">#FFFFFF</color>
+    <color name="axis">#ffffff</color>
+    <color name="label">#ffffff</color>
+    <color name="line_bg">#00bba7</color>
+    <color name="line_grid">#00a694</color>
+    <color name="line">#ffffff</color>
+    <color name="line_fill">#30ffffff</color>
+    <color name="line_tooltip">#ffffff</color>
+    <color name="black">#000000</color>
+    <color name="yellow">#f39800</color>
+    <color name="bar_bg">#f67743</color>
+    <color name="bar_bgbar">#d96739</color>
+    <color name="bar_fill1">#fed4c2</color>
+    <color name="bar_fill2">#ffc2a9</color>
+    <color name="bar_highest">#ffffff</color>
+    <color name="bar_grid">#1Aaa3302</color>
+    <color name="bar_tooltip">#aa3302</color>
+
+</resources>

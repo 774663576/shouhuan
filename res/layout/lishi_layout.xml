@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="3dip"
+        android:text="本周"
+        android:textColor="@color/yellow"
+        android:textSize="16sp" />
+    <!-- android:background="#F67743" -->
+
+    <com.db.chart.view.BarChartView
+        xmlns:chart="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/barchart"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginBottom="2dp"
+        android:layout_marginLeft="7dp"
+        android:layout_marginRight="7dp"
+        android:layout_marginTop="2dp"
+        android:layout_weight="1"
+        android:paddingBottom="10dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingTop="10dp"
+        chart:chart_axisBorderSpacing="0dp"
+        chart:chart_axisColor="@color/black"
+        chart:chart_labelColor="@color/black"
+        chart:chart_typeface="Roboto-Regular.ttf" />
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="3dip"
+        android:text="本月"
+        android:textColor="@color/yellow"
+        android:textSize="16sp" />
+
+    <com.db.chart.view.BarChartView
+        xmlns:chart="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/barchart_moth"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginBottom="2dp"
+        android:layout_marginLeft="7dp"
+        android:layout_marginRight="7dp"
+        android:layout_marginTop="2dp"
+        android:layout_weight="1"
+        android:paddingBottom="10dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingTop="10dp"
+        chart:chart_axisBorderSpacing="0dp"
+        chart:chart_axisColor="@color/black"
+        chart:chart_labelColor="@color/black"
+        chart:chart_typeface="Roboto-Regular.ttf" />
+
+</LinearLayout>

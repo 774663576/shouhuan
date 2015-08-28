@@ -1,0 +1,71 @@
+<com.shouhuan.view.ResideLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/reside_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <include
+        android:id="@+id/left_menu"
+        android:layout_width="match_parent"
+        layout="@layout/menu_layout" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#ffffff" >
+
+        <LinearLayout
+            android:id="@+id/main_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/line"
+            android:orientation="horizontal" >
+        </LinearLayout>
+
+        <View
+            android:id="@+id/line"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dip"
+            android:layout_above="@+id/tab_layout"
+            android:background="#d5d5d5" />
+
+        <LinearLayout
+            android:id="@+id/tab_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true" >
+
+            <LinearLayout
+                android:id="@+id/layout_jiankang"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:paddingBottom="8dip"
+                android:paddingTop="8dip" >
+
+                <ImageView
+                    android:id="@+id/img_jiankang"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/jiankang_selecotor" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layout_message"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:paddingBottom="8dip"
+                android:paddingTop="8dip" >
+
+                <ImageView
+                    android:id="@+id/img_message"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/message_selstor" />
+            </LinearLayout>
+        </LinearLayout>
+    </RelativeLayout>
+
+</com.shouhuan.view.ResideLayout>
