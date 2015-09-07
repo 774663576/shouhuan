@@ -20,6 +20,7 @@
             android:src="@drawable/sport_left_button_normal" />
 
         <LinearLayout
+            android:id="@+id/linearLayout1"
             android:layout_width="match_parent"
             android:layout_height="35dip"
             android:layout_centerInParent="true"
@@ -57,6 +58,16 @@
                 android:textColor="@color/white"
                 android:textSize="16sp" />
         </LinearLayout>
+
+        <ImageView
+            android:id="@+id/img_right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignTop="@+id/linearLayout1"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:src="@drawable/title_right_btn_selector" />
     </RelativeLayout>
 
     <LinearLayout

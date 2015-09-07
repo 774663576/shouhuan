@@ -15,8 +15,8 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.ble.ble_fastcode.bluetooth.InewAgreementListener;
 import com.ble.ble_fastcode.bluetooth.WristBandDevice;
@@ -28,21 +28,26 @@ import com.ble.ble_fastcode.task.WriteOneDataTask;
 import com.google.gson.Gson;
 import com.shouhuan.R;
 import com.shouhuan.Util.Constants;
+import com.shouhuan.Util.RightBtnPopwindow;
+import com.shouhuan.Util.RightBtnPopwindow.SelectOnclick;
 import com.shouhuan.Util.SharedUtils;
 import com.shouhuan.data.ShouHuanData;
 import com.shouhuan.db.DBUtils;
 import com.shouhuan.view.ResideMenuListener;
 
 public class JianKangFragment extends Fragment implements OnClickListener,
-		InewAgreementListener {
+		InewAgreementListener, SelectOnclick {
 	private ImageView img_open;
 	private ResideMenuListener menuListener;
-	private TextView btn_yundong;
+	private TextView btn_yundong_or_shuimian;
 	private TextView btn_lishi;
 	private YunDongFragment ydFragment;
 	private LiShiFragment lsFragment;
 	private FragmentTransaction fraTra = null;
 	private FragmentManager manager;
+	private ImageView img_right;
+	private RelativeLayout layout_title;
+	private RightBtnPopwindow pop;
 
 	@Override
 	public void onAttach(Activity activity) {
@@ -78,17 +83,21 @@ public class JianKangFragment extends Fragment implements OnClickListener,
 	}
 
 	private void initView() {
+		layout_title = (RelativeLayout) getView().findViewById(
+				R.id.layout_title);
 		img_open = (ImageView) getView().findViewById(R.id.img_open);
-		btn_yundong = (TextView) getView().findViewById(R.id.btn_yundong);
+		btn_yundong_or_shuimian = (TextView) getView().findViewById(
+				R.id.btn_yundong);
 		btn_lishi = (TextView) getView().findViewById(R.id.btn_lishi);
+		img_right = (ImageView) getView().findViewById(R.id.img_right);
 		setListener();
 	}
 
 	private void setListener() {
 		img_open.setOnClickListener(this);
 		btn_lishi.setOnClickListener(this);
-		btn_yundong.setOnClickListener(this);
-
+		btn_yundong_or_shuimian.setOnClickListener(this);
+		img_right.setOnClickListener(this);
 	}
 
 	private void initFragment() {
@@ -110,8 +119,9 @@ public class JianKangFragment extends Fragment implements OnClickListener,
 			break;
 		case R.id.btn_yundong:
 			fraTra = getChildFragmentManager().beginTransaction();
-			btn_yundong.setTextColor(getResources().getColor(R.color.blue));
-			btn_yundong.setBackgroundColor(getResources().getColor(
+			btn_yundong_or_shuimian.setTextColor(getResources().getColor(
+					R.color.blue));
+			btn_yundong_or_shuimian.setBackgroundColor(getResources().getColor(
 					R.color.white));
 			btn_lishi.setTextColor(getResources().getColor(R.color.white));
 			btn_lishi.setBackgroundColor(getResources().getColor(R.color.blue));
@@ -127,9 +137,10 @@ public class JianKangFragment extends Fragment implements OnClickListener,
 			btn_lishi.setTextColor(getResources().getColor(R.color.blue));
 			btn_lishi
 					.setBackgroundColor(getResources().getColor(R.color.white));
-			btn_yundong.setTextColor(getResources().getColor(R.color.white));
-			btn_yundong.setBackgroundColor(getResources()
-					.getColor(R.color.blue));
+			btn_yundong_or_shuimian.setTextColor(getResources().getColor(
+					R.color.white));
+			btn_yundong_or_shuimian.setBackgroundColor(getResources().getColor(
+					R.color.blue));
 
 			if (lsFragment == null) {
 				lsFragment = new LiShiFragment();
@@ -142,6 +153,18 @@ public class JianKangFragment extends Fragment implements OnClickListener,
 			}
 			fraTra.show(lsFragment);
 			fraTra.commit();
+			break;
+		case R.id.img_right:
+			if (img_right.isSelected()) {
+				img_right.setSelected(false);
+				pop.dismiss();
+			} else {
+				img_right.setSelected(true);
+				pop = new RightBtnPopwindow(getActivity(), layout_title);
+				pop.setmSelectOnclick(this);
+
+				pop.show();
+			}
 			break;
 		default:
 			break;
@@ -212,6 +235,7 @@ public class JianKangFragment extends Fragment implements OnClickListener,
 			sh.setCalorie(sh.getCalorie() + oldData.getCalorie());
 			sh.setDistance(sh.getDistance() + oldData.getDistance());
 			sh.setSteps(sh.getSteps() + oldData.getSteps());
+			sh.setTime(sh.getTime() + 5);
 			sh.update(DBUtils.getDBsa(2));
 		} else {
 			sh.write(DBUtils.getDBsa(2));
@@ -229,6 +253,7 @@ public class JianKangFragment extends Fragment implements OnClickListener,
 	public String toJson(Object obj) {
 		Gson gson = new Gson();
 		String jsonStr = gson.toJson(obj);
+		System.out.println("json:::::::::::========" + jsonStr);
 		return jsonStr;
 	}
 
@@ -287,5 +312,20 @@ public class JianKangFragment extends Fragment implements OnClickListener,
 	public void onDestroy() {
 		super.onDestroy();
 		getActivity().unregisterReceiver(mBroadcastReceiver);
+	}
+
+	@Override
+	public void menu1_select() {
+		btn_yundong_or_shuimian.setText("ÔË¶¯");
+	}
+
+	@Override
+	public void menu2_select() {
+		btn_yundong_or_shuimian.setText("Ë¯Ãß");
+	}
+
+	@Override
+	public void onDismiss() {
+		img_right.setSelected(false);
 	};
 }

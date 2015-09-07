@@ -77,6 +77,7 @@ public class YunDongFragment extends Fragment implements OnClickListener {
 	private int max_step;
 	private double max_juli;
 	private double max_kaluli;
+	private int max_time;
 
 	private final static String[] lineLabels = { "0:00", "1:00", "2:00",
 			"3:00", "4:00", "5:00", "6:00", "7:00", "8:00", "9:00", "10:00",
@@ -92,6 +93,9 @@ public class YunDongFragment extends Fragment implements OnClickListener {
 			{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
 			{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 } };
 	private float[][] kaluliValues = {
+			{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+			{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 } };
+	private float[][] timeValues = {
 			{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
 			{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 } };
 	private static LineChartView mLineChart;
@@ -169,11 +173,13 @@ public class YunDongFragment extends Fragment implements OnClickListener {
 		int step;
 		double distance;
 		double calorie;
+		int time_;
 		for (int i = 0; i < lists.size(); i++) {
 			ShouHuanData data = lists.get(i);
 			step = data.getSteps();
 			distance = data.getDistance();
 			calorie = data.getCalorie();
+			time_ = data.getTime();
 			if (step > max_step) {
 				max_step = step;
 			}
@@ -183,15 +189,21 @@ public class YunDongFragment extends Fragment implements OnClickListener {
 			if (calorie > max_kaluli) {
 				max_kaluli = calorie;
 			}
+			if (time_ > max_time) {
+				max_time = time_;
+			}
 			stepValues[0][data.getHour()] = step;
 			stepValues[1][data.getHour()] = step;
 			juliValues[0][data.getHour()] = (float) distance;
 			juliValues[1][data.getHour()] = (float) distance;
 			kaluliValues[0][data.getHour()] = (float) calorie;
 			kaluliValues[1][data.getHour()] = (float) calorie;
+			timeValues[0][data.getHour()] = time_;
+			timeValues[1][data.getHour()] = time_;
 			all_step += data.getSteps();
 			all_juli += data.getDistance();
 			all_kaluli += data.getCalorie();
+			all_time += time_;
 		}
 		lineValues = stepValues;
 		getLineMaxAndStep(max_step);
@@ -246,6 +258,7 @@ public class YunDongFragment extends Fragment implements OnClickListener {
 		b = new BigDecimal(all_kaluli);
 		df = b.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
 		txt_kaluli.setText(df + "");
+		txt_time.setText(all_time + "");
 		setListener();
 	}
 
@@ -302,8 +315,6 @@ public class YunDongFragment extends Fragment implements OnClickListener {
 			lineValues = stepValues;
 			updateLineChart();
 			txt_current_count.setText(all_step + "");
-			txt_current_danwei = (TextView) getView().findViewById(
-					R.id.txt_current_danwei);
 			txt_current_danwei.setText("步数");
 			img_tishi.setImageResource(R.drawable.step_small);
 			txt_tishi.setText("步数/步");
@@ -338,6 +349,13 @@ public class YunDongFragment extends Fragment implements OnClickListener {
 			txt_juli.setSelected(false);
 			txt_kaluli.setSelected(false);
 			txt_time.setSelected(true);
+			getLineMaxAndStep(max_time);
+			lineValues = timeValues;
+			updateLineChart();
+			txt_current_count.setText(all_time + "");
+			txt_current_danwei.setText("运动时间");
+			img_tishi.setImageResource(R.drawable.time_small);
+			txt_tishi.setText("运动时间/分");
 			break;
 		default:
 			break;

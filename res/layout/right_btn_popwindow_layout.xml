@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/parent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black" >
+
+    <LinearLayout
+        android:id="@+id/layout_yundong"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:background="#e9e9e9"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="10dip" >
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawablePadding="3dip"
+            android:drawableTop="@drawable/conversation_options_qr"
+            android:text="运动"
+            android:textColor="#909090" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layout_shuimian"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:background="#e9e9e9"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="10dip" >
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawablePadding="3dip"
+            android:drawableTop="@drawable/conversation_options_multichat"
+            android:text="睡眠"
+            android:textColor="#909090" />
+    </LinearLayout>
+
+</LinearLayout>

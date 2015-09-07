@@ -113,6 +113,16 @@ public class SharedUtils {
 
 	}
 
+	public static void setShuiMianState(boolean state) {
+		editor.putBoolean("shuimian_state", state);
+		editor.commit();
+	}
+
+	public static boolean getShuiMianState() {
+		return sharedPreferences.getBoolean("shuimian_state", false);
+
+	}
+
 	public static void clearData() {
 		editor.clear();
 		editor.commit();

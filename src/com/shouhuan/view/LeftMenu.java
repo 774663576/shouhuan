@@ -14,11 +14,11 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.shouhuan.MessagePushctivity;
 import com.shouhuan.R;
 import com.shouhuan.Util.Utils;
 import com.shouhuan.activity.BangDingActivity;
 import com.shouhuan.activity.MainActivity;
+import com.shouhuan.activity.MessagePushctivity;
 import com.shouhuan.data.LeftMenuData;
 
 public class LeftMenu {

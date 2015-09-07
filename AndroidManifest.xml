@@ -53,7 +53,7 @@
         </receiver>
 
         <activity
-            android:name="com.shouhuan.MessagePushctivity"
+            android:name="com.shouhuan.activity.MessagePushctivity"
             android:label="@string/title_activity_message_pushctivity" >
         </activity>
     </application>

@@ -18,6 +18,7 @@ public class ShouHuanData extends AbstractData {
 	private int steps;// 步数
 	private double calorie;// 卡路里
 	private double distance;// 距离
+	private int time;// 距离
 
 	@Override
 	public String toString() {
@@ -81,6 +82,14 @@ public class ShouHuanData extends AbstractData {
 		this.distance = distance;
 	}
 
+	public int getTime() {
+		return time;
+	}
+
+	public void setTime(int time) {
+		this.time = time;
+	}
+
 	public int getCurrentHourCount(SQLiteDatabase db) {
 		Cursor cursor = db
 				.rawQuery(
@@ -104,16 +113,17 @@ public class ShouHuanData extends AbstractData {
 		cv.put("steps", this.steps);
 		cv.put("calorie", this.calorie);
 		cv.put("distance", this.distance);
+		cv.put("time", this.time);
 		db.insert(dbName, null, cv);
 	}
 
 	@Override
 	public void read(SQLiteDatabase db) {
-		Cursor cursor = db.query(Const.SHOUHUAN_TABLE_NAME,
-				new String[] { "year", "month", "day", "hour", "steps",
-						"calorie", "distance", },
-				"year=? and month=? and day=? ", new String[] { this.year + "",
-						this.month + "", this.day + "" }, null, null, null);
+		Cursor cursor = db.query(Const.SHOUHUAN_TABLE_NAME, new String[] {
+				"year", "month", "day", "hour", "steps", "calorie", "distance",
+				"time" }, "year=? and month=? and day=? ", new String[] {
+				this.year + "", this.month + "", this.day + "" }, null, null,
+				null);
 		if (cursor.getCount() > 0) {
 			cursor.moveToFirst();
 			this.year = cursor.getInt(cursor.getColumnIndex("year"));
@@ -123,6 +133,8 @@ public class ShouHuanData extends AbstractData {
 			this.steps = cursor.getInt(cursor.getColumnIndex("steps"));
 			this.calorie = cursor.getDouble(cursor.getColumnIndex("calorie"));
 			this.distance = cursor.getDouble(cursor.getColumnIndex("distance"));
+			this.time = cursor.getInt(cursor.getColumnIndex("time"));
+
 		}
 	}
 
@@ -137,6 +149,7 @@ public class ShouHuanData extends AbstractData {
 		cv.put("steps", this.steps);
 		cv.put("calorie", this.calorie);
 		cv.put("distance", this.distance);
+		cv.put("time", this.time);
 		db.update(dbName, cv, "year=? and month=? and day=? and hour=?",
 				new String[] { this.year + "", this.month + "", this.day + "",
 						this.hour + "" });
